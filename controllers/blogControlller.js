@@ -129,6 +129,7 @@ exports.deleteBlogController = async (req, res) => {
       // .findOneAndDelete(req.params.id)
       .findByIdAndDelete(req.params.id)
       .populate("user");
+    console.log(blog);
     await blog.user.blogs.pull(blog);
     await blog.user.save();
     return res.status(200).send({
